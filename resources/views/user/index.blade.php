@@ -131,14 +131,49 @@
             document.getElementById('filieresSection').classList.add('visible');
         @endif
 
-          function accesAdmin() {
-            const motdepasse = prompt("Entrez le mot de passe admin :");
-            if(motdepasse === "2008@") {
-                window.location.href = "{{ route('admin.dashboard') }}";
-            } else {
-                alert("Mot de passe incorrect !");
-            }
+      function accesAdmin() {
+    // Crée dynamiquement un container pour l'alerte
+    const alertDiv = document.createElement('div');
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.top = '0';
+    alertDiv.style.left = '0';
+    alertDiv.style.width = '100%';
+    alertDiv.style.height = '100%';
+    alertDiv.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    alertDiv.style.display = 'flex';
+    alertDiv.style.justifyContent = 'center';
+    alertDiv.style.alignItems = 'center';
+    alertDiv.style.zIndex = '9999';
+
+    // Contenu de la boîte de mot de passe
+    alertDiv.innerHTML = `
+        <div style="background:#fff; padding:20px; border-radius:10px; width:300px; text-align:center; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+            <h3 style="margin-bottom:10px; color:#2563EB;">Accès Admin</h3>
+            <input type="password" id="adminPassword" placeholder="Mot de passe" style="width:90%; padding:5px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+            <div style="display:flex; justify-content:space-between;">
+                <button id="cancelBtn" style="background:#ccc; padding:5px 10px; border-radius:5px;">Annuler</button>
+                <button id="submitBtn" style="background:#2563EB; color:#fff; padding:5px 10px; border-radius:5px;">Valider</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(alertDiv);
+
+    // Annuler
+    document.getElementById('cancelBtn').onclick = () => {
+        document.body.removeChild(alertDiv);
+    };
+
+    // Valider mot de passe
+    document.getElementById('submitBtn').onclick = () => {
+        const pwd = document.getElementById('adminPassword').value;
+        if(pwd === "2008@") {
+            window.location.href = "{{ route('admin.dashboard') }}";
+        } else {
+            alert("Mot de passe incorrect !");
         }
+    };
+}
     </script>
 
     

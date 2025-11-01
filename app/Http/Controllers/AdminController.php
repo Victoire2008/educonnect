@@ -25,6 +25,38 @@ class AdminController extends Controller
           Etablissement::create($request->all());
         return back()->with('success', 'Établissement ajouté avec succès !');
     }
+
+    // Afficher le formulaire de modification
+public function editEtablissement($id)
+{
+    $etablissement = Etablissement::findOrFail($id);
+    return view('admin.editEtablissement', compact('etablissement'));
+}
+    
+    // Mettre à jour l'établissement
+     public function updateEtablissement(Request $request, $id)
+   {
+    $request->validate([
+        'nom' => 'required|string|unique:etablissements,nom,'.$id,
+        'adresse' => 'nullable|string',
+        'contact' => 'nullable|string',
+    ]);
+
+    $etablissement = Etablissement::findOrFail($id);
+    $etablissement->update($request->all());
+
+    return redirect()->back()->with('success', 'Établissement mis à jour avec succès.');
+}
+   // Supprimer un établissement
+public function deleteEtablissement($id)
+{
+    $etablissement = Etablissement::findOrFail($id);
+    $etablissement->delete();
+
+    return redirect()->back()->with('success', 'Établissement supprimé avec succès.');
+}
+
+
      //Ajouter une nouvelle filiere 
       public function storeFiliere(Request $request)
     {
@@ -36,6 +68,37 @@ class AdminController extends Controller
         return back()->with('success', 'Filière ajoutée avec succès !');
     }
 
+  // Afficher le formulaire de modification
+public function editFiliere($id)
+{
+    $filiere = Filiere::findOrFail($id);
+    return view('admin.editFiliere', compact('filiere'));
+}
+
+// Mettre à jour la filière
+public function updateFiliere(Request $request, $id)
+{
+    $request->validate([
+        'nom' => 'required|string|unique:filieres,nom,'.$id,
+        'description' => 'nullable|string',
+    ]);
+
+    $filiere = Filiere::findOrFail($id);
+    $filiere->update($request->all());
+
+    return redirect()->back()->with('success', 'Filière mise à jour avec succès.');
+}
+
+// Supprimer une filière
+public function deleteFiliere($id)
+{
+    $filiere = Filiere::findOrFail($id);
+    $filiere->delete();
+
+    return redirect()->back()->with('success', 'Filière supprimée avec succès.');
+}
+
+
     // Attribuer des filières à un établissement
     public function assignFiliereToEtablissement(Request $request)
     {
@@ -46,6 +109,7 @@ class AdminController extends Controller
      $etablissement = Etablissement::findOrFail($request->etablissement_id);
 
     // On enregistre les associations
+    //syncWithoutDetaching evite les doublons
     $etablissement->filieres()->syncWithoutDetaching($request->filieres);
 
     return redirect()->back()->with('success', 'Filières attribuées avec succès.');

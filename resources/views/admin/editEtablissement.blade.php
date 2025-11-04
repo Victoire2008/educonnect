@@ -8,8 +8,8 @@
 
     <style>
         :root {
-            --blue: #0d6efd; /* Bleu principal doux */
-            --light-blue: #e9f2ff; /* Arrière-plan bleu clair */
+            --blue: #0d6efd;
+            --light-blue: #e9f2ff;
             --white: #ffffff;
             --text-dark: #1b1b1b;
         }
@@ -17,11 +17,13 @@
         body {
             background-color: var(--light-blue);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
         }
 
         h2 {
             color: var(--blue);
             font-weight: 600;
+            text-align: center;
         }
 
         .card {
@@ -30,7 +32,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             max-width: 600px;
-            margin: auto;
+            margin: 40px auto;
+            padding: 25px;
         }
 
         label {
@@ -46,6 +49,8 @@
             background-color: var(--blue);
             border: none;
             border-radius: 8px;
+            width: 30%;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
@@ -54,23 +59,70 @@
 
         .btn-secondary {
             border-radius: 8px;
+            width: 30%;
+            margin-top: 10px;
         }
 
         .alert {
             border-radius: 8px;
+            text-align: center;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .card {
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                font-size: 0.9rem;
+                padding: 5px;
+            }
+
+            .d-flex {
+                flex-direction: initial;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+
+            .form-control {
+                font-size: 0.9rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2 class="mb-4 text-center">Modifier un Établissement</h2>
+    <div class="container">
+        <h2>Modifier un Établissement</h2>
 
         @if(session('success'))
-            <div class="alert alert-success text-center">{{ session('success') }}</div>
+            <div class="alert alert-success mt-3">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('admin.updateEtablissement', $etablissement->id) }}" method="POST" class="card p-4 shadow">
+        <form action="{{ route('admin.updateEtablissement', $etablissement->id) }}" method="POST" class="card">
             @csrf
             @method('PUT')
 
@@ -97,7 +149,7 @@
 
             <div class="d-flex justify-content-between">
                 <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">⬅ Retour</a>
-                <button type="submit" class="btn btn-primary"> Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </form>
     </div>

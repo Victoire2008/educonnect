@@ -1,9 +1,10 @@
-🎓 Gestion des Établissements et Filières
+**Gestion des Établissements et Filières**
 
 Une application web développée avec Laravel permettant d’administrer facilement les établissements et leurs filières associées, ainsi que de les consulter via une interface utilisateur fluide et moderne.
 
-🚀 Fonctionnalités principales
-👩‍💼 Côté administrateur
+## Fonctionnalités principales
+
+# Côté administrateur
 
 Ajouter, modifier ou supprimer un établissement.
 
@@ -13,7 +14,7 @@ Associer plusieurs filières à un établissement.
 
 Tableau de bord clair avec affichage dynamique des établissements et de leurs filières.
 
-👨‍🎓 Côté utilisateur
+# Côté utilisateur
 
 Choisir un établissement depuis une interface simple.
 
@@ -23,7 +24,7 @@ Consulter la description de chaque filière.
 
 Expérience fluide avec effet de transition entre les sections (choix ➜ résultats).
 
-🧱 Structure du projet
+# Structure du projet
 project/
 ├── app/
 │   ├── Http/Controllers/
@@ -49,17 +50,17 @@ project/
 └── routes/
     └── web.php
 
-⚙️ Installation et configuration
-1️⃣ Cloner le dépôt
+## Installation et configuration
+ Cloner le dépôt
 git clone https://github.com/ton-compte/gestion-etablissements.git
 cd gestion-etablissements
 
-2️⃣ Installer les dépendances
+## Installer les dépendances
 composer install
 npm install
 npm run dev
 
-3️⃣ Créer le fichier d’environnement
+## Créer le fichier d’environnement
 cp .env.example .env
 
 
@@ -72,20 +73,20 @@ DB_DATABASE=etablissement_db
 DB_USERNAME=root
 DB_PASSWORD=
 
-4️⃣ Générer la clé de l’application
+# Générer la clé de l’application
 php artisan key:generate
 
-5️⃣ Migrer la base de données
+# Migrer la base de données
 php artisan migrate
 
-🖥️ Lancer le serveur
+ # Lancer le serveur
 php artisan serve
 
 
 Puis ouvrir ton navigateur sur :
-👉 http://127.0.0.1:8000
+ http://127.0.0.1:8000
 
-🎨 Design
+# Design
 
 L’interface a été conçue avec :
 
@@ -95,7 +96,7 @@ Couleurs principales : bleu clair et blanc
 
 Animations avec Animate.css et transitions douces entre sections
 
-🔐 Accès administrateur
+# #Accès administrateur
 
 Un bouton discret d’accès est placé en bas à gauche de la page :
 
@@ -104,9 +105,6 @@ Un bouton discret d’accès est placé en bas à gauche de la page :
 
 Ce bouton permet de rejoindre le tableau de bord d’administration.
 
-✨ Auteur
 
 Victoire Emmanuelle
-Développeuse d’applications web (Laravel / PHP / MySQL)
-📧 [victoirebamba1@gmail.com
-]
+victoirebamba1@gmail.com
